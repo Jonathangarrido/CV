@@ -1,0 +1,105 @@
+@mixin columnas($pantalla){
+  @each $col in $cols{
+    @if $col == 33{
+      .c#{$col}-#{$pantalla}{
+        flex-basis: 33.33333333 * 1%;
+        width: 33.33333333 * 1%;
+      }
+    }@else{
+      .c#{$col}-#{$pantalla}{
+        flex-basis: $col * 1%;
+        width: $col * 1%;
+      }
+    }
+  }
+}
+
+@if $incluir__grid == true{
+  /*------------------------------------
+    ·GRID
+    ------------------------------------*/
+
+  // Contenedor de columnas
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @each $pantalla, $pixel in $breakpoints{
+    @if $pantalla == s{
+      @include columnas($pantalla)
+    }
+    @else{
+      @media only screen and (min-width: $pixel){
+        @include columnas($pantalla)
+      }
+    }    
+  }
+}
+
+@if $incluir__grid--v-h  == true{
+  /*------------------------------------
+    ·HIDDEN VISIBLE
+    ------------------------------------*/
+  .c-hidden-s{
+    display: none;
+  }
+
+  .c-hidden-m{
+    display: block;
+  }
+
+  .c-hidden-l{
+    display: block;
+  }
+
+  .c-visible-s{
+    display: block;
+  }
+
+  .c-visible-m{
+    display: none;
+  }
+
+  .c-visible-l{
+    display: none;
+  }
+
+  @include respond-to(m){
+    .c-hidden-s{
+      display: block;
+    }
+
+    .c-hidden-m{
+      display: none;
+    }
+
+    .c-visible-s{
+      display: none;
+    }
+
+    .c-visible-m{
+      display: block;
+    }
+      
+  }
+
+  @include respond-to(l){
+    .c-hidden-m{
+      display: block;
+    }
+
+    .c-hidden-l{
+      display: none;
+    }
+
+    .c-visible-m{
+      display: none;
+    }
+
+    .c-visible-l{
+      display: block;
+    }
+  }
+}

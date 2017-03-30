@@ -1,0 +1,77 @@
+@if $incluir__icons == true{
+  /* ------------------------------------
+        ·ICONS
+    -------------------------------------*/
+
+  @font-face {
+    font-family: 'icomoon';
+    src:  url('#{$font-dir}/icomoon.eot?mhj81j');
+    src:  url('#{$font-dir}/icomoon.eot?mhj81j#iefix') format('embedded-opentype'),
+      url('#{$font-dir}/icomoon.ttf?mhj81j') format('truetype'),
+      url('#{$font-dir}/icomoon.woff?mhj81j') format('woff'),
+      url('#{$font-dir}/icomoon.svg?mhj81j#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    // use !important to prevent issues with browser extensions that change fonts
+    
+    
+    
+    &:after,
+    &:before{
+      font-family: 'icomoon' !important;
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+
+      // Better Font Rendering =========== 
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+  }
+
+  $icons: ( 
+    'search': '\f002',
+    'check' : '\f00c',
+    'close' : '\f00d',
+    'pencil': '\f040',
+    'plus'  : '\f067',
+    'minus' : '\f068',
+    'phone': '\f095',
+    'link': '\f0c1',
+    'navicon': '\f0c9',
+    'mail': '\f0e0',
+    'download': '\f0ed',
+    'angle-left': '\f104',
+    'angle-right': '\f105',
+    'angle-up': '\f106',
+    'angle-down': '\f107',
+    'ellipsis': '\f142',
+    'send': '\f1d8',
+    'whatsapp': '\f232',
+    'snapchat': '\f2ab',
+    'facebook': '\f230',
+    'spotify': '\f1bc',
+    'skype': '\f17e',
+    'instagram': '\f16d',
+    'dropbox': '\f16b',
+    'youtube': '\f16a',
+    'linkedin': '\f0e1',
+    'google-plus': '\f0d5',
+    'pinterest': '\f0d2',
+    'github': '\f09b',
+    'twitter': '\f099',
+  );
+
+  @each $name, $value in $icons{
+    .icon-#{$name}:before{
+       content: $value;
+    }
+  }
+}

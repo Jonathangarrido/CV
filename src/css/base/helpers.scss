@@ -1,0 +1,62 @@
+/* ------------------------------------
+      ·HELPERS
+  -------------------------------------*/
+.wrapper{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.full{
+  height: 100vh;
+  width: 100vw;
+}
+
+.min-height{
+  min-height: 100vh;
+  padding: 5rem 0;
+}
+
+.contenedor{
+  @include max-width(900px);
+  position: relative;
+}
+.contenedor-full{
+  @include max-width(1440px);
+  position: relative;
+}
+
+.overflow{
+  overflow: hidden;
+}
+
+.center-txt{
+  text-align: center;
+}
+.left-txt{
+  text-align: left;
+}
+.right-txt{
+  text-align: right;
+}
+.destacado{
+  color: $color-base
+}
+
+.code{
+  padding: 1rem;
+  border-left: 2px solid $color-base;
+}
+
+.s{
+  width: 2rem;
+}
+
+
+button.clipboard{
+  font-size: .8rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}

@@ -1,0 +1,93 @@
+/* ------------------------------------
+      ·TYPOGRAPHY
+  -------------------------------------*/
+
+html,
+body{
+  background-color: $background;
+  color: $textcolor;
+  font-family: $basefont;
+  line-height: $baselineheight;
+  font-size: $basefontsize;
+  font-weight: $baseheadingfontweight;
+  overflow-x: hidden;
+}
+// HEADINGS ====================================================
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  color : $textcolor;
+  font-family : $altfont;
+  font-weight : $baseheadingfontweight;
+  line-height: $baselineheight;
+  margin : 0;
+  margin-bottom: $text-margin-btm;
+  text-rendering : optimizelegibility;
+}
+
+// Set headers line-height, margin bottom and font size
+@each $header,$font-size in $tittle-size{
+  #{$header}, .#{$header}{
+    font-size: ($font-size) * 1rem;
+  }
+}
+
+@include respond-to(m){
+ @each $header,$font-size in $tittle-size-l{
+    #{$header}, .#{$header}{
+      font-size: ($font-size) * 1rem;
+    }
+  }
+}
+
+
+
+
+// TYPOGRAFÍA ====================================================
+p,
+ul{
+  line-height : $baselineheight;
+  padding: 0;
+  margin-bottom : $text-margin-btm;
+}
+
+li{
+  list-style: none;
+}
+.lista{
+  li{
+    margin-left: 1rem;
+    list-style: disc;
+  }
+}
+
+hr{
+  border : 0;
+  border-top : 1px solid $bordercolor;
+  clear : both;
+  display : block;
+  height : 1px;
+  margin : $baselineheight 0;
+  padding : 0;
+}
+
+b, strong{
+  font-weight : bold;
+}
+
+a{
+  color: $linkcolor;
+  text-decoration: none;
+}
+// Web Colours
+$selection: false;
+@if $selection == true{
+  ::selection{
+    background-color : $selection-bgc;
+    color: $selection-color;
+  }
+}

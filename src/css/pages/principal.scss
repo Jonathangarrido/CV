@@ -1,0 +1,230 @@
+.saludo{
+  @extend .wrapper;
+  min-height: 90vh;
+  // min-height: 99vh;
+  position: relative;
+  p{
+    animation-duration: 1s;
+    animation-name: rubberBand;
+    font-size: 3rem;
+    // font-size: 5rem;
+    font-weight: 100;
+  }
+  &:after{
+    animation: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    @extend .wrapper;
+    border: solid 1px white;
+    border-radius: 50%;
+    bottom: 2rem;
+    content: '\f107';
+    font-family: 'icomoon';
+    height: 3rem;
+    margin-left: -1.5rem;
+    left: 50%;
+    position: absolute;
+    width: 3rem;
+  }
+}
+.presentacion{
+  @extend .wrapper;
+  background-color: $color-secondary;
+  padding: 5rem 1rem;
+  p{
+    text-align: center;
+    font-size: 1.2rem;
+    // font-size: 1.5rem;
+    font-weight: 300;
+    // font-weight: 100;
+    margin-bottom: 0;
+    max-width: 1000px;
+  }
+}
+
+.title{
+  text-align: center;
+  font-size: 1.5rem;
+  // font-size: 2rem;
+  font-weight: 300;
+  // font-weight: 100;
+  margin-bottom: 3rem;
+}
+.parrafo{
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 100;
+}
+
+.skill{
+  background-color: $color-tertiary;
+  padding: 5rem 0 0;
+  &-barra{
+    display: flex;
+  
+    &:not(:last-child){
+      margin-bottom: 1rem;
+    }
+    $skill-span-w : 7rem;
+    span{
+      background-color: $color-secondary;
+      border-radius: 5px 0 0 5px;
+      font-weight: 300;
+      min-width: $skill-span-w;
+      padding: .75rem;
+      text-align: center;
+    }
+    >div{
+      overflow: hidden;
+      position: relative;
+      width: calc(100% - #{$skill-span-w});
+      &:after{
+        content: '';
+        background-color: $color-base;
+        border-radius: 0 5px 5px 0;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+      }
+    }
+    $porcentajes: 40 50 60 70 80 90 100;
+    @each $por in $porcentajes{
+      &-#{$por}{
+        &:after{
+          width: $por * 1%;
+        }
+      }
+    }
+  }
+  
+}
+.herramientas{
+  background-color: $color-tertiary;
+  padding: 5rem 1rem;
+  &-icons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    svg,
+    img{
+      border-radius: 5px;
+      max-height: 4rem;
+      max-width: 4rem;
+      padding: .25rem;
+      margin: .25rem;
+    }
+  }
+}
+.trabajos{
+  &>div{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  background-color: $color-secondary;
+  padding: 5rem 0;
+  text-align: center;
+  &-web{
+    margin-bottom: 1rem;
+  }
+  a{
+    @extend .parrafo;
+  }
+}
+.contacto{
+  padding: 5rem 1rem;
+  &-icons{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    a{
+      @extend .parrafo;
+      &:before{
+        margin-right: .5rem;
+      }
+    }
+  }
+}
+
+
+@include respond-to(m){
+  .saludo{
+    min-height: 99vh;
+    p{
+      font-size: 5rem;
+    }
+  }
+  .presentacion{
+    p{
+      font-size: 1.5rem;
+      font-weight: 100;
+    }
+  }
+
+  .title{
+    font-size: 2rem;
+    font-weight: 100;
+  }
+
+  .skill{
+    &>div{
+      justify-content: flex-start;
+    }
+    &-barra{
+      padding-left: .5rem;
+      padding-right: .5rem;
+      margin-bottom: 1rem;
+      &-Html5{
+        order: 1;
+      }
+      &-Css3{
+        order: 3;
+      }
+      &-JS{
+        order: 5;
+      }
+      &-Git{
+        order: 7;
+      }
+      &-PHP{
+        order: 2;
+      }
+      &-Worpress{
+        order: 4;
+      }
+      &-Suite-Adobe{
+        order: 6;
+      }
+
+    }
+    
+  }
+  .herramientas{
+    &-icons{
+      svg,
+      img{
+        max-height: 5rem;
+        max-width: 5rem;
+      }
+    }
+  }
+  .trabajos{
+    &-web{
+      padding: 0 .5rem;
+    }
+  }
+  .contacto{
+    &-icons{
+      flex-direction: row;
+      a{
+        &:not(:last-child){
+          margin-right: 1rem;
+        }
+        &:before{
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}

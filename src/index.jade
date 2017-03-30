@@ -1,0 +1,77 @@
+extends ./templates/common/base.jade
+
+block vars
+  - var title = 'Jonathan Garrido Currículum Vitaee'
+  - var description = ''
+
+mixin barra(name,p)
+  div(class='skill-barra-'+name).skill-barra.c100-s.c50-m
+    span=name
+    div(class='skill-barra-'+p)
+
+mixin web(name,jpg,url)
+  .trabajos-web.c100-s.c50-m.c33-l
+    img(src="images/web/"+jpg+".jpg", alt=name)
+    a(href=url target='_blank')=name
+
+
+block content
+  
+  .saludo: p HOLA!
+  .presentacion
+    p Mi nombre es Jonathan Garrido nací en 1988 en Santiago de Chile, soy un Front End apasionado, autodidacta y buscando siempre nuevas tecnologías para ir al día con la web. Egrese el 2013 de la carrera de Diseño y Programación Multimedia en INACAP. 
+      br
+      br
+      |Mis pasatiempos; lector nocturno, fanático de Canción de hielo y fuego, ciclista urbano, esclavo de Insanity: Max 30 y los fin de semana trato de ser futbolista... aunque no me resulte xD.
+  .skill
+    .row.contenedor
+      .c100-s.title MIS SKILL
+      +barra('Html5',100)
+      +barra('Css3',100)
+      +barra('JS',80)
+      +barra('Git',80)
+      +barra('PHP',50)
+      +barra('Worpress',50)
+      +barra('Suite-Adobe',70)
+  .herramientas
+    .contenedor
+      .title MIS HERRAMIENTAS 
+      .herramientas-icons
+        include ../dist/images/icon/webpack.svg
+        include ../dist/images/icon/gulp.svg
+        include ../dist/images/icon/yarn.svg
+        include ../dist/images/icon/sass.svg
+        include ../dist/images/icon/jade.svg
+        include ../dist/images/icon/angular-icon.svg
+        //- include ../dist/images/icon/react.svg
+        include ../dist/images/icon/sourcetree.svg
+        include ../dist/images/icon/terminal.svg
+        include ../dist/images/icon/github-octocat.svg
+        include ../dist/images/icon/gitlab.svg
+        include ../dist/images/icon/mysql.svg 
+        include ../dist/images/icon/vscode.svg
+        include ../dist/images/icon/slack.svg
+        include ../dist/images/icon/trello.svg
+        include ../dist/images/icon/adobe-illustrator-cc.svg
+        include ../dist/images/icon/photoshop-cc.svg
+
+  .trabajos
+    .row
+      .c100-s.title TRABAJOS EN LOS QUE HE PARTICIPADO
+      +web('Agencia Pan','agencia-pan','http://agenciapan.cl/')
+      +web('Agencia Alma','agencia-alma','http://agenciaalma.com/')
+      +web('Brita','brita','http://www.britachile.cl/')
+      +web('Departamentos de Hacienda','departamentos-de-hacienda','http://www.departamentosdehacienda.cl/')
+      +web('Pan Dúo','duo','http://www.castanoduo.cl/')
+      +web('Hector Galindo Consejal','chan','https://jonathangarrido.github.io/chan/src/')
+      +web('Inmobiliaria Manquehue','inmobiliaria-manquehue')
+      +web('Marketing Semiotico','marketing-semiotico','http://marketingsemiotico.cl/')
+      +web('Torrealba Alcalde','torrealba','http://www.torrealba.cl/')
+      +web('Clinica Odotologica El Mañio','manio','https://www.clinicaelmanio.cl/')
+      +web('Piedra Roja','piedra-roja','http://piedraroja.cl/')
+  .contacto
+    .title CONTACTO
+    .contacto-icons
+      a(href='https://github.com/Jonathangarrido' target='_blank').icon-github Jonathangarrido
+      a(href='https://twitter.com/JGarrido1988' target='_blank').icon-twitter JGarrido1988
+      a(href='mailto:jonathan.garrido1988@gmail.com').icon-mail jonathan.garrido1988@gmail.com

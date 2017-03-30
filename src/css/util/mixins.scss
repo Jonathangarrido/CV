@@ -1,0 +1,203 @@
+// ------------------------------------
+//       ·MIXINS
+// -------------------------------------
+
+// 
+// Fácil de usar: las variables a usar están en settings.scss y son:
+//   'small'  : 48em,
+//   'medium' : 56.25em,
+//   'large'  : 68.75em,
+
+// Y el uso va como sigue:
+// .foo
+//   color: red
+//   @include respond-to('m')
+//     color: blue
+
+@mixin respond-to($breakpoint){
+  @if map-has-key($breakpoints, $breakpoint){
+    @media only screen and (min-width: map-get($breakpoints, $breakpoint)){
+      @content;
+    }
+  }@else{
+    @warn "Unfortunately, no value could be retrieved from #{$breakpoint}. Please make sure it is defined in $breakpoints map. ";
+  }
+}
+
+
+//Centrar y dar un ancho máximo igual a $pagemaxwidth.
+
+@mixin max-width($max-width : $pagemaxwidth){
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $max-width;
+  padding: 0 1rem;
+  width: 100%;
+}
+  
+
+
+// POSITION
+@mixin ejey($eje-x:'left',$pos-x:0){
+  @if $eje-x == left{
+    left: $pos-x
+  }@else{
+    right: $pos-x
+  }
+}
+  
+  //@include position(absolute,bottom,left)
+@mixin position($tipo:'absolute',$eje-y:'top',$eje-x:'left',$pos-y:0,$pos-x:0){
+  position: $tipo;
+  @if $eje-y == top{
+    top: $pos-y;
+  }@else{
+    bottom: $pos-y;
+  }
+  @include ejey($eje-x,$pos-x);
+}
+
+
+@mixin aclarar($color:#f0f){
+  background-color: lighten($color, 5%);
+}
+
+// -------------------------------------
+//       ·SECTION SEPARATORS
+// -------------------------------------
+
+@mixin separator_comun($left:0,$height:0,$width:0){
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  left: $left;
+  height: $height;
+  width: $width;
+}
+
+@mixin triangulo_comun($size){
+  @include separator_comun(50%);
+  border-right: $size solid transparent;
+  border-left: $size solid transparent;
+  transform: translateX(-50%);
+}
+@mixin triangulo_small_before($color:#000,$size:6.5rem){
+  &::before{
+    @include triangulo_comun($size);
+    border-bottom: $size solid $color;
+    top: $size * -1;
+  }
+}
+@mixin triangulo_small_after($color:#000,$size:6.5rem){
+  &::after{
+    @include triangulo_comun($size);
+    border-top: $size solid $color;
+    bottom: $size * -1;
+  }
+}
+
+@mixin triangulo_big_before($color:#000,$altura:6rem){
+  &::before{
+    @include triangulo_comun(50vw);
+    top: $altura * -1;
+    border-bottom: $altura solid $color;
+  }
+}
+@mixin triangulo_big_after($color:#000,$altura:6rem){
+  &::after{
+    @include triangulo_comun(50vw);
+    bottom: $altura * -1;
+    border-top: $altura solid $color;
+  }
+}
+
+@mixin diagonal_comun{
+  @include separator_comun();
+}
+@mixin diagonal_before($color:#000,$altura:5rem){
+  &::before{
+    @include diagonal_comun();
+    border-bottom: $altura solid $color;
+    border-right: 100vw solid transparent;
+    top: $altura * -1;
+  }
+}
+@mixin diagonal_after($color:#000,$altura:5rem){
+  &::after{
+    @include diagonal_comun();
+    border-right: 100vw solid transparent;
+    border-top: $altura solid $color; 
+    bottom: $altura * -1;
+  }
+}
+
+@mixin semi_circulo_comun($color:#000,$ancho:13rem ,$altura:6.5rem){
+  @include separator_comun(50%,$altura,$ancho);
+  transform: translateX(-50%);
+  background-color: $color;
+}
+@mixin semi_circulo_small_before($color:#000,$altura:6.5rem){
+  $ancho : $altura * 2;
+  &::before{
+   @include semi_circulo_comun($color,$ancho,$altura);
+    top: $altura * -1;
+    border-radius: $ancho $ancho 0 0;
+  }
+}
+@mixin semi_circulo_small_after($color:#000,$altura:6.5rem){
+  $ancho : $altura * 2;
+  &::after{
+   @include semi_circulo_comun($color,$ancho,$altura);
+    bottom: $altura * -1;
+    border-radius: 0 0 $ancho $ancho;
+  }
+}
+
+@mixin semi_circulo_big_before($color:#000,$altura:15rem,$inclinacion:105vw){
+  &::before{
+    @include semi_circulo_comun($color,$inclinacion,$altura);
+    top: $altura / -2;
+    border-radius: 50% / 40%;
+  }
+}
+@mixin semi_circulo_big_after($color:#000,$altura:5rem,$inclinacion:105vw){
+  &::after{
+    @include semi_circulo_comun($color,$inclinacion,$altura);
+    bottom: $altura / -2;
+    border-radius: 50% / 40%;
+  }
+}
+
+@mixin diagonal_curva_comun($color:#000, $altura: 7rem){
+  @include separator_comun(0,$altura,100vw);
+  background: $color;
+}
+@mixin diagonal_curva_rigth_before($color:#000, $altura: 7rem){
+  &::before{
+    @include diagonal_curva_comun($color,$altura);
+    top: -$altura;
+    border-radius: 0 100% 0 0;
+  }
+}
+@mixin diagonal_curva_rigth_after($color:#000, $altura: 7rem){
+  &::after{
+    @include diagonal_curva_comun($color,$altura);
+    bottom: -$altura;
+    border-radius: 0 0 100% 0;
+  }
+}
+@mixin diagonal_curva_left_before($color:#000, $altura: 7rem){
+  &::before{
+    @include diagonal_curva_comun($color,$altura);
+    top: -$altura;
+    border-radius: 100% 0 0 0;
+  }
+}
+@mixin diagonal_curva_left_after($color:#000, $altura: 7rem){
+  &::after{
+    @include diagonal_curva_comun($color,$altura);
+    bottom: -$altura;
+    border-radius: 0 0 0 100%;
+  }
+} 
